@@ -4,6 +4,8 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { createExpense } from '@/app/(dashboard)/actions';
+import { error } from 'console';
 
 export function AddExpenseDialog() {
 	const [open, setOpen] = useState(false);
@@ -15,7 +17,7 @@ export function AddExpenseDialog() {
 	const [description, setDescription] = useState('');
 	const [paymentMethod, setPaymentMethod] = useState('');
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
 		const data = {
@@ -28,6 +30,19 @@ export function AddExpenseDialog() {
 		};
 
 		console.log(data);
+		const result = await createExpense(data);
+		if (result.error) {
+			console.error(result.error);
+		}
+		if (result.success) {
+			setOpen(false);
+			setTitle('');
+			setAmount('');
+			setDate(new Date().toISOString().split('T')[0]);
+			setCategoryId('');
+			setDescription('');
+			setPaymentMethod('');
+		}
 	};
 
 	return (
