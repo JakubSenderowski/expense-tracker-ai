@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
-
+import { AddExpenseDialog } from '@/components/expenses/add-expense-dialog';
 export default async function DashboardPage() {
 	const supabase = await createClient();
 
@@ -22,7 +22,10 @@ export default async function DashboardPage() {
 					))}
 				</div>
 			</div>
-
+			<div className='flex justify-between items-center mb-4'>
+				<h2 className='text-xl font-semibold'>Wydatki:</h2>
+				<AddExpenseDialog />
+			</div>
 			<div>
 				<h2 className='text-xl font-semibold mb-4'>Wydatki:</h2>
 				<p className='text-gray-500'>Brak wydatków (dodamy to za chwilę)</p>
