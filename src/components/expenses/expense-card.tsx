@@ -1,6 +1,9 @@
+'use client';
+import { deleteExpense } from '@/app/(dashboard)/actions';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '../ui/button';
 import { ExpenseCardProps } from '@/types/database';
-export function ExpenseCard({ title, amount, date }: ExpenseCardProps) {
+export function ExpenseCard({ title, amount, date, id }: ExpenseCardProps) {
 	return (
 		<Card>
 			<CardHeader>
@@ -11,6 +14,7 @@ export function ExpenseCard({ title, amount, date }: ExpenseCardProps) {
 			</CardContent>
 			<CardFooter>
 				<p>{new Date(date).toLocaleDateString('pl-PL')}</p>
+				<Button onClick={() => deleteExpense(id)}>Usuń</Button>
 			</CardFooter>
 		</Card>
 	);

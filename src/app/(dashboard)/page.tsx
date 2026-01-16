@@ -6,13 +6,9 @@ export default async function DashboardPage() {
 
 	const { data: categories } = await supabase.from('categories').select('*');
 	const { data: expenses } = await supabase.from('expenses').select('*');
-	if (!expenses || expenses.length === 0) {
-		return (
-			<div>
-				<span>Brak wydatków</span>
-			</div>
-		);
-	}
+	console.log('Expenses:', expenses); // ← DODAJ TO
+	console.log('Length:', expenses?.length);
+
 	return (
 		<div className='p-8'>
 			<h1 className='text-3xl font-bold mb-6'>Dashboard</h1>
@@ -35,9 +31,19 @@ export default async function DashboardPage() {
 				<AddExpenseDialog />
 			</div>
 			<div className='space-y-4'>
-				{expenses.map((expense) => (
-					<ExpenseCard key={expense.id} title={expense.title} amount={expense.amount} date={expense.date} />
-				))}
+				{!expenses || expenses.length === 0 ? (
+					<span>Brak wydatkow</span>
+				) : (
+					expenses.map((expense) => (
+						<ExpenseCard
+							key={expense.id}
+							title={expense.title}
+							amount={expense.amount}
+							date={expense.date}
+							id={expense.id}
+						/>
+					))
+				)}
 			</div>
 		</div>
 	);

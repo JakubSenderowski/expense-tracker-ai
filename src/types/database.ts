@@ -35,6 +35,7 @@ export interface UpdateExpenseInput {
 	payment_method?: string | null;
 }
 export interface ExpenseCardProps {
+	id: string;
 	title: string;
 	amount: number;
 	date: string;

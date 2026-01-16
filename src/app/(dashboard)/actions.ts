@@ -18,3 +18,14 @@ export async function createExpense(data: CreateExpenseInput) {
 
 	return { success: true };
 }
+
+export async function deleteExpense(id: string) {
+	const supabase = await createClient();
+	const { error } = await supabase.from('expenses').delete().eq('id', id);
+	if (error) {
+		return { error: error.message };
+	}
+
+	revalidatePath('/');
+	return { success: true };
+}
