@@ -1,13 +1,12 @@
 import { createClient } from '@/lib/supabase/server';
 import { AddExpenseDialog } from '@/components/expenses/add-expense-dialog';
 import { ExpenseCard } from '@/components/expenses/expense-card';
+import { EditExpenseDialog } from '@/components/expenses/edit-expense-dialog';
 export default async function DashboardPage() {
 	const supabase = await createClient();
 
 	const { data: categories } = await supabase.from('categories').select('*');
 	const { data: expenses } = await supabase.from('expenses').select('*');
-	console.log('Expenses:', expenses); // ← DODAJ TO
-	console.log('Length:', expenses?.length);
 
 	return (
 		<div className='p-8'>

@@ -5,8 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { createExpense } from '@/app/(dashboard)/actions';
-import { error } from 'console';
-
 export function AddExpenseDialog() {
 	const [open, setOpen] = useState(false);
 

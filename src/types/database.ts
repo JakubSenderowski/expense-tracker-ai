@@ -27,7 +27,7 @@ export interface CreateExpenseInput {
 }
 export interface UpdateExpenseInput {
 	id: string;
-	category_id: string | null;
+	category_id?: string | null;
 	title?: string;
 	amount?: number;
 	date?: string;
