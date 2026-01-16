@@ -34,3 +34,8 @@ export interface UpdateExpenseInput {
 	description?: string | null;
 	payment_method?: string | null;
 }
+export interface ExpenseCardProps {
+	title: string;
+	amount: number;
+	date: string;
+}
